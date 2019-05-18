@@ -1,14 +1,21 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
-    </ion-title>
+  <p style="text-align: center"> Weather App</p>
+  </ion-title>
+     <ion-buttons end>
+      <button (click)="addLocation()"><ion-icon name="add"></ion-icon></button>
+        <ion-badge name="add" color="primary">{{Countries.length}}</ion-badge>
+      </ion-buttons>
+
+    <img style="width:32px" src="../../assets/imgs/bahrain-flag.png"  (click)="loadAbout()">
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+ <ion-list>
+  <ion-item *ngFor="let item of Countries" (click)="getDetails(item)">{{item.City}} - {{item.Country}}</ion-item>
+  
+ </ion-list>
+ 
 </ion-content>
