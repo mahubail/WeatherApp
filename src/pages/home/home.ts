@@ -36,6 +36,7 @@ Countries=[
     [
       { text:"Cancel"},
       { text: "Add", handler: (newLocation)=>{this.Countries.push({"Country":newLocation.Country,"City":newLocation.City})}}
+    
     ]
 
     });
