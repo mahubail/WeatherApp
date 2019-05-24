@@ -1,11 +1,14 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-  <p style="text-align: center"> Weather App</p>
+  <p style="text-align: center"> Weather App 
+    <ion-icon name="flash" large color="secondary" (click)="toggle()" *ngIf="reorderT"></ion-icon>
+    <ion-icon name="flash" large color="danger" (click)="toggle()" *ngIf="!reorderT"></ion-icon></p>
+  
   </ion-title>
      <ion-buttons end>
       <button (click)="addLocation()"><ion-icon name="add"></ion-icon></button>
-        <ion-badge name="add" color="primary">{{Countries.length}}</ion-badge>
+        <ion-badge name="add" color="primary" *ngIf="Countries" >{{Countries.length}}</ion-badge>
       </ion-buttons>
 
     <img style="width:32px" src="../../assets/imgs/bahrain-flag.png"  (click)="loadAbout()">
@@ -13,9 +16,16 @@
 </ion-header>
 
 <ion-content padding>
- <ion-list>
-  <ion-item *ngFor="let item of Countries" (click)="getDetails(item)">{{item.City}} - {{item.Country}}</ion-item>
+ <ion-list [reorder]="reorderT" (ionItemReorder)="Reorder($event)">
+  <ion-item-sliding *ngFor="let item of Countries; let i=index" (click)="getDetails(item,i)">
+  <ion-item>
+    {{item.City}} - {{item.Country}}
+  </ion-item>
+  <ion-item-options side="right">
+<ion-icon name="trash" color="danger" (click)="deleteLocation(i)"></ion-icon>
+  </ion-item-options>
+  </ion-item-sliding>
   
  </ion-list>
- 
+
 </ion-content>

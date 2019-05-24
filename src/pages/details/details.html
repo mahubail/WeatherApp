@@ -11,5 +11,18 @@
 </ion-header>
 
 <ion-content padding>
-
+<!--{{locationDetails.Country}}-{{locationDetails.City}}-->
+<ion-grid *ngIf="weather">
+  <ion-row>
+    <ion-col width-50 offset-25>
+<h2>{{locationDetails.City}}</h2>
+<div class="icon" *ngFor="let item of weather?.weather">
+  <img src="http://openweathermap.org/img/w/{{item.icon}}.png">
+  <h3>{{item.description}}</h3>
+</div> 
+<h2 class="temp">{{weather?.main.temp}}&deg;</h2>
+    </ion-col>
+  </ion-row>
+</ion-grid> 
+<!--<h1>{{weather?.main.temp}}</h1>-->
 </ion-content>

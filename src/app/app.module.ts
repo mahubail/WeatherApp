@@ -1,3 +1,4 @@
+import { ViewUsersPage } from './../pages/view-users/view-users';
 import { DetailsPage } from './../pages/details/details';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -8,14 +9,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
+import { HttpClientModule } from '@angular/common/http';
+import { UserProvider } from '../providers/user/user';
+import { WeatherServiceProvider } from '../providers/weather-service/weather-service';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage, AboutPage, DetailsPage
+    HomePage, AboutPage, DetailsPage, ViewUsersPage
   ],
   imports: [
-    BrowserModule,
+    BrowserModule, HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -23,12 +27,15 @@ import { AboutPage } from '../pages/about/about';
     MyApp,
     HomePage,
     AboutPage,
-    DetailsPage
+    DetailsPage,
+    ViewUsersPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserProvider,
+    WeatherServiceProvider
   ]
 })
 export class AppModule {}
